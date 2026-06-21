@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 
 const fadeUp = {
@@ -54,41 +54,6 @@ const skillGroups = [
   }
 ]
 
-function SkillGroupCard({ group, i }) {
-  const [active, setActive] = useState(null)
-
-  return (
-    <motion.div
-      className="skill-group"
-      key={group.name}
-      variants={fadeUp}
-      initial="hidden"
-      custom={i + 1}
-      style={{ '--group-accent': group.color }}
-    >
-      <div className="skill-group-top">
-        <div className="skill-group-icon">{group.icon}</div>
-        <span className="skill-badge">{group.badge}</span>
-      </div>
-      <div className="skill-group-name">{group.name}</div>
-      <div className="skill-pills">
-        {group.pills.map((pill, pi) => (
-          <motion.span
-            className={`skill-pill${active === pi ? ' skill-pill-active' : ''}`}
-            key={pill}
-            onMouseEnter={() => setActive(pi)}
-            onMouseLeave={() => setActive(null)}
-            whileHover={{ y: -2 }}
-            transition={{ duration: 0.15 }}
-          >
-            {pill}
-          </motion.span>
-        ))}
-      </div>
-    </motion.div>
-  )
-}
-
 export default function Skills() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
@@ -110,14 +75,37 @@ export default function Skills() {
           </p>
         </motion.div>
 
-        <motion.div
-          className="skills-grid"
-          animate={inView ? 'visible' : 'hidden'}
-        >
+        <div className="skills-grid">
           {skillGroups.map((group, i) => (
-            <SkillGroupCard key={group.name} group={group} i={i} />
+            <motion.div
+              className="skill-group"
+              key={group.name}
+              variants={fadeUp}
+              initial="hidden"
+              animate={inView ? 'visible' : 'hidden'}
+              custom={i + 1}
+              style={{ '--group-accent': group.color }}
+            >
+              <div className="skill-group-top">
+                <div className="skill-group-icon">{group.icon}</div>
+                <span className="skill-badge">{group.badge}</span>
+              </div>
+              <div className="skill-group-name">{group.name}</div>
+              <div className="skill-pills">
+                {group.pills.map((pill) => (
+                  <motion.span
+                    className="skill-pill"
+                    key={pill}
+                    whileHover={{ y: -2, color: 'var(--text)' }}
+                    transition={{ duration: 0.15 }}
+                  >
+                    {pill}
+                  </motion.span>
+                ))}
+              </div>
+            </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   )

@@ -74,86 +74,10 @@ const projects = [
   }
 ]
 
-function ProjectCard({ proj, i }) {
-  const [hovered, setHovered] = useState(false)
-
-  return (
-    <motion.div
-      className="project-card"
-      variants={fadeUp}
-      initial="hidden"
-      custom={i + 1}
-      style={{ '--card-accent': proj.color }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-    >
-      <div className="project-num">{proj.num}</div>
-
-      <div className="project-top">
-        <div className="project-icon">{proj.icon}</div>
-        <div className="project-actions">
-          {proj.live && proj.liveUrl && (
-            <a
-              href={proj.liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="proj-action-btn live-btn"
-              onClick={(e) => e.stopPropagation()}
-              title="View Live"
-            >
-              <FaExternalLinkAlt size={12} />
-              <span>Live</span>
-            </a>
-          )}
-          <a
-            href={proj.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="proj-action-btn github-btn"
-            onClick={(e) => e.stopPropagation()}
-            title="View on GitHub"
-          >
-            <FaGithub size={14} />
-            <span>Code</span>
-          </a>
-        </div>
-      </div>
-
-      {proj.live && (
-        <div className="project-live">
-          <span className="live-dot" />
-          LIVE
-        </div>
-      )}
-
-      <h3 className="project-title">{proj.title}</h3>
-      <p className="project-desc">{proj.desc}</p>
-
-      <div className="tags">
-        {proj.tags.map((tag) => (
-          <span className="tag" key={tag}>{tag}</span>
-        ))}
-      </div>
-
-      <AnimatePresence>
-        {hovered && (
-          <motion.div
-            className="card-glow"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            style={{ background: `radial-gradient(circle at 50% 0%, ${proj.color}18, transparent 70%)` }}
-          />
-        )}
-      </AnimatePresence>
-    </motion.div>
-  )
-}
-
 export default function Projects() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
+  const [hoveredIdx, setHoveredIdx] = useState(null)
 
   return (
     <section className="projects" id="projects" ref={ref}>
@@ -184,14 +108,80 @@ export default function Projects() {
           </motion.a>
         </div>
 
-        <motion.div
-          className="projects-grid"
-          animate={inView ? 'visible' : 'hidden'}
-        >
+        <div className="projects-grid">
           {projects.map((proj, i) => (
-            <ProjectCard key={proj.title} proj={proj} i={i} />
+            <motion.div
+              className="project-card"
+              key={proj.title}
+              variants={fadeUp}
+              initial="hidden"
+              animate={inView ? 'visible' : 'hidden'}
+              custom={i + 1}
+              style={{ '--card-accent': proj.color }}
+              onMouseEnter={() => setHoveredIdx(i)}
+              onMouseLeave={() => setHoveredIdx(null)}
+            >
+              <div className="project-num">{proj.num}</div>
+
+              <div className="project-top">
+                <div className="project-icon">{proj.icon}</div>
+                <div className="project-actions">
+                  {proj.live && proj.liveUrl && (
+                    <a
+                      href={proj.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="proj-action-btn live-btn"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <FaExternalLinkAlt size={11} />
+                      <span>Live</span>
+                    </a>
+                  )}
+                  <a
+                    href={proj.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="proj-action-btn github-btn"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <FaGithub size={13} />
+                    <span>Code</span>
+                  </a>
+                </div>
+              </div>
+
+              {proj.live && (
+                <div className="project-live">
+                  <span className="live-dot" />
+                  LIVE
+                </div>
+              )}
+
+              <h3 className="project-title">{proj.title}</h3>
+              <p className="project-desc">{proj.desc}</p>
+
+              <div className="tags">
+                {proj.tags.map((tag) => (
+                  <span className="tag" key={tag}>{tag}</span>
+                ))}
+              </div>
+
+              <AnimatePresence>
+                {hoveredIdx === i && (
+                  <motion.div
+                    className="card-glow"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                    style={{ background: `radial-gradient(circle at 50% 0%, ${proj.color}18, transparent 70%)` }}
+                  />
+                )}
+              </AnimatePresence>
+            </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   )
