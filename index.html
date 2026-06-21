@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Malik Abdullah Awan | AI Engineer</title>
+    <meta name="description" content="Personal portfolio of Malik Abdullah Awan, AI Engineer.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #07090f;
+            --text-main: #f8f9fa;
+            --text-muted: #a0a5b5;
+            --accent-blue: #4f8ef7;
+            --accent-purple: #7c5cfc;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --card-hover: rgba(79, 142, 247, 0.2);
+            --nav-bg: rgba(7, 9, 15, 0.8);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: 'Space Grotesk', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--text-main);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .mono {
+            font-family: 'Space Mono', monospace;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Nav */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            background: var(--nav-bg);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--card-border);
+            padding: 1.2rem 0;
+        }
+
+        .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-blue);
+        }
+
+        /* Section Spacing */
+        section {
+            padding: 6rem 0;
+        }
+
+        .section-header {
+            margin-bottom: 3rem;
+            display: flex;
+            align-items: baseline;
+            gap: 1rem;
+        }
+
+        .section-num {
+            color: var(--accent-blue);
+            font-size: 1.2rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 5rem;
+        }
+
+        .eyebrow {
+            color: var(--accent-blue);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 5rem);
+            margin-bottom: 1.5rem;
+            letter-spacing: -2px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: inline-block;
+        }
+
+        .hero-bio {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin-bottom: 2.5rem;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+
+        .btn-primary {
+            background: var(--text-main);
+            color: var(--bg);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-blue);
+            color: #fff;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border-color: var(--card-border);
+            color: var(--text-main);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent-purple);
+            color: var(--accent-purple);
+        }
+
+        .badge-row {
+            display: flex;
+            gap: 1.5rem;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-blue);
+            box-shadow: 0 4px 20px var(--card-hover);
+        }
+
+        /* About */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 2rem 1rem;
+        }
+
+        .stat-num {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent-purple);
+            margin-bottom: 0.5rem;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Experience */
+        .exp-card {
+            margin-bottom: 1.5rem;
+        }
+
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .exp-title {
+            font-size: 1.3rem;
+            color: var(--text-main);
+        }
+
+        .exp-company {
+            color: var(--accent-blue);
+            font-weight: 600;
+        }
+
+        .exp-date {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .exp-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .project-card {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .project-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .project-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--card-border);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-family: 'Space Mono', monospace;
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-category {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--accent-purple);
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .skill-list li::before {
+            content: '▹';
+            color: var(--accent-blue);
+            margin-right: 0.8rem;
+            font-family: 'Space Mono', monospace;
+        }
+
+        /* Contact */
+        .contact-card {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .contact-card h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-subtitle {
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            font-family: 'Space Mono', monospace;
+            font-size: 0.9rem;
+        }
+
+        .contact-link:hover {
+            color: var(--accent-blue);
+        }
+
+        /* Footer */
+        footer {
+            padding: 2rem 0;
+            text-align: center;
+            border-top: 1px solid var(--card-border);
+            margin-top: 4rem;
+        }
+
+        .copyright {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+            .nav-links {
+                display: none;
+            }
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="container nav-inner">
+            <a href="#" class="logo mono">// MALIK.AI</a>
+            <div class="nav-links mono">
+                <a href="#about">01. About</a>
+                <a href="#experience">02. Experience</a>
+                <a href="#projects">03. Projects</a>
+                <a href="#skills">04. Skills</a>
+                <a href="#contact">05. Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="hero">
+            <div class="container">
+                <span class="eyebrow mono">Hi, my name is</span>
+                <h1>
+                    Malik Abdullah Awan.<br>
+                    <span class="gradient-text">I build intelligent systems.</span>
+                </h1>
+                <p class="hero-bio">
+                    I am an AI Engineer specializing in generative AI, computer vision, and building scalable full-stack applications powered by intelligent agentic workflows.
+                </p>
+                <div class="btn-group">
+                    <a href="#projects" class="btn btn-primary">View My Work</a>
+                    <a href="#contact" class="btn btn-outline">Get In Touch</a>
+                </div>
+                <div class="badge-row mono">
+                    <div class="badge">
+                        <span>🎓</span> BS in Artificial Intelligence @ GIKI
+                    </div>
+                    <div class="badge">
+                        <span>📍</span> Topi, Pakistan
+                    </div>
+                    <div class="badge">
+                        <span>✉️</span> muhammadabdullahasif1074@gmail.com
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-num mono">01 —</span>
+                    <h2 class="section-title">About Me</h2>
+                </div>
+                <div class="about-grid">
+                    <div class="about-text">
+                        <p>
+                            I'm an AI engineering student at the Ghulam Ishaq Khan Institute of Engineering Sciences & Technology (GIKI), anticipating graduation in June 2026. My passion lies in bridging the gap between cutting-edge artificial intelligence models and practical, user-centric applications.
+                        </p>
+                        <p>
+                            Recently, I've been focusing heavily on agentic AI system integration and generative AI feature implementation, creating workflows that enable automated task execution. I enjoy solving complex problems using full-stack development, deep learning, and computer vision.
+                        </p>
+                        <p>
+                            Beyond coding, I'm actively involved in community leadership. As an Event Coordinator for Project TOPI, I've led welfare initiatives supporting over 400 families, and I help organize academic competitions for the GIKI Mathematical Society.
+                        </p>
+                    </div>
+                    <div class="stats-grid">
+                        <div class="card stat-card">
+                            <div class="stat-num mono">4+</div>
+                            <div class="stat-label">Years of Focus</div>
+                        </div>
+                        <div class="card stat-card">
+                            <div class="stat-num mono">10+</div>
+                            <div class="stat-label">AI Projects Built</div>
+                        </div>
+                        <div class="card stat-card">
+                            <div class="stat-num mono">92%</div>
+                            <div class="stat-label">Model Accuracy*</div>
+                        </div>
+                        <div class="card stat-card">
+                            <div class="stat-num mono">417</div>
+                            <div class="stat-label">Families Supported</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-num mono">02 —</span>
+                    <h2 class="section-title">Experience</h2>
+                </div>
+                <div class="card exp-card">
+                    <div class="exp-header">
+                        <h3 class="exp-title">Web & AI Intern <span class="exp-company">@ Smart Computing</span></h3>
+                        <span class="exp-date mono">Jun 2025 – Jul 2025</span>
+                    </div>
+                    <div class="exp-desc">
+                        <ul>
+                            <li style="margin-bottom: 0.5rem; margin-left: 1rem;"><strong>Agentic AI System Integration:</strong> Integrated agent-based AI workflows into web applications enabling automated task execution and intelligent responses.</li>
+                            <li style="margin-bottom: 0.5rem; margin-left: 1rem;"><strong>AI-Assisted Full-Stack Development:</strong> Built and deployed multiple applications using AI-assisted development workflows, accelerating feature delivery and development cycles.</li>
+                            <li style="margin-bottom: 0.5rem; margin-left: 1rem;"><strong>Generative AI Feature Implementation:</strong> Implemented LLM-powered features using generative AI APIs to enhance automation, user interaction, and application intelligence.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-num mono">03 —</span>
+                    <h2 class="section-title">Featured Projects</h2>
+                </div>
+                <div class="projects-grid">
+                    <!-- Project 1 -->
+                    <div class="card project-card">
+                        <div class="project-icon">🧠</div>
+                        <h3 class="project-title">Dhyan</h3>
+                        <p class="project-desc">Full-Stack Multimodal AI Therapeutic System integrating React frontend, REST APIs, and persistent storage. Features face/emotion recognition, speaker ID, and LLM conversations.</p>
+                        <div class="tags">
+                            <span class="tag">React</span>
+                            <span class="tag">REST API</span>
+                            <span class="tag">Computer Vision</span>
+                            <span class="tag">LLMs</span>
+                        </div>
+                    </div>
+                    <!-- Project 2 -->
+                    <div class="card project-card">
+                        <div class="project-icon">🎨</div>
+                        <h3 class="project-title">DALL-E Clone</h3>
+                        <p class="project-desc">End-to-end full-stack platform using image generation APIs, user history management, authentication workflows, and scalable frontend-backend architecture.</p>
+                        <div class="tags">
+                            <span class="tag">React</span>
+                            <span class="tag">Node.js</span>
+                            <span class="tag">MySQL</span>
+                            <span class="tag">GenAI APIs</span>
+                        </div>
+                    </div>
+                    <!-- Project 3 -->
+                    <div class="card project-card">
+                        <div class="project-icon">🎙️</div>
+                        <h3 class="project-title">Urdu Deepfake Detection</h3>
+                        <p class="project-desc">CNN-LSTM deep learning model for synthetic Urdu speech detection using audio feature extraction and temporal sequence modeling. Achieved 92% accuracy.</p>
+                        <div class="tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">CNN-LSTM</span>
+                            <span class="tag">Deep Learning</span>
+                        </div>
+                    </div>
+                    <!-- Project 4 -->
+                    <div class="card project-card">
+                        <div class="project-icon">📸</div>
+                        <h3 class="project-title">AI Attendance System</h3>
+                        <p class="project-desc">YOLO-based real-time face recognition and attendance automation pipeline supporting live inference and scalable classroom deployment.</p>
+                        <div class="tags">
+                            <span class="tag">OpenCV</span>
+                            <span class="tag">YOLO</span>
+                            <span class="tag">Python</span>
+                        </div>
+                    </div>
+                    <!-- Project 5 -->
+                    <div class="card project-card">
+                        <div class="project-icon">💬</div>
+                        <h3 class="project-title">LLM Chatbot</h3>
+                        <p class="project-desc">Low-latency conversational AI assistant using Groq APIs with robust context management, prompt engineering, and optimized response generation.</p>
+                        <div class="tags">
+                            <span class="tag">Groq API</span>
+                            <span class="tag">Prompt Engineering</span>
+                            <span class="tag">LLMs</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-num mono">04 —</span>
+                    <h2 class="section-title">Technical Skills</h2>
+                </div>
+                <div class="skills-grid">
+                    <div class="card">
+                        <h3 class="skill-category">Programming</h3>
+                        <ul class="skill-list mono">
+                            <li>Python</li>
+                            <li>C++</li>
+                            <li>SQL</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3 class="skill-category">Machine Learning</h3>
+                        <ul class="skill-list mono">
+                            <li>TensorFlow</li>
+                            <li>PyTorch</li>
+                            <li>Scikit-Learn</li>
+                            <li>Deep Learning (CNNs, RNNs, LSTMs)</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3 class="skill-category">Generative AI</h3>
+                        <ul class="skill-list mono">
+                            <li>OpenAI API</li>
+                            <li>Groq API</li>
+                            <li>RAG</li>
+                            <li>Prompt Engineering</li>
+                            <li>AI Agents</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3 class="skill-category">Computer Vision</h3>
+                        <ul class="skill-list mono">
+                            <li>OpenCV</li>
+                            <li>YOLO</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3 class="skill-category">Backend & Cloud</h3>
+                        <ul class="skill-list mono">
+                            <li>Flask & REST APIs</li>
+                            <li>MySQL</li>
+                            <li>AWS (EC2, S3)</li>
+                            <li>Linux, Git, CI/CD</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <div class="container">
+                <div class="card contact-card">
+                    <span class="section-num mono" style="display:block; margin-bottom:1rem;">05 —</span>
+                    <h2 class="gradient-text">Let's Build Something</h2>
+                    <p class="contact-subtitle">Currently open for new opportunities and collaborations.</p>
+                    <div class="contact-links">
+                        <a href="mailto:muhammadabdullahasif1074@gmail.com" class="contact-link">
+                            <span>📧</span> Email
+                        </a>
+                        <a href="https://linkedin.com/in/malikabdullahawan-ai" target="_blank" class="contact-link">
+                            <span>💼</span> LinkedIn
+                        </a>
+                        <a href="https://github.com/malikabdullahawan" target="_blank" class="contact-link">
+                            <span>💻</span> GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p class="copyright mono">Designed & Built by Malik Abdullah Awan &copy; 2026</p>
+        </div>
+    </footer>
+
+</body>
+</html>
