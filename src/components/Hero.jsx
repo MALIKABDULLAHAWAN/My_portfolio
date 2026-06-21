@@ -1,4 +1,6 @@
 import { motion } from 'framer-motion'
+import { FaGithub, FaLinkedin } from 'react-icons/fa'
+import { HiOutlineMail } from 'react-icons/hi'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -37,7 +39,10 @@ export default function Hero() {
           className="hero-actions"
           variants={fadeUp} initial="hidden" animate="visible" custom={3}
         >
-          <a href="#projects" className="btn-primary">View Projects</a>
+          <a href="#projects" className="btn-primary">
+            <span>View Projects</span>
+            <span className="btn-arrow">→</span>
+          </a>
           <a href="#contact" className="btn-outline">Get In Touch</a>
         </motion.div>
 
@@ -57,6 +62,21 @@ export default function Hero() {
             <span className="badge-dot" style={{ background: 'var(--ember)' }} />
             Topi, Pakistan
           </div>
+        </motion.div>
+
+        <motion.div
+          className="hero-socials"
+          variants={fadeUp} initial="hidden" animate="visible" custom={5}
+        >
+          <a href="mailto:muhammadabdullahasif1074@gmail.com" className="hero-social-link" aria-label="Email">
+            <HiOutlineMail size={18} />
+          </a>
+          <a href="https://github.com/MALIKABDULLAHAWAN" target="_blank" rel="noopener noreferrer" className="hero-social-link" aria-label="GitHub">
+            <FaGithub size={16} />
+          </a>
+          <a href="https://linkedin.com/in/malikabdullahawan-ai" target="_blank" rel="noopener noreferrer" className="hero-social-link" aria-label="LinkedIn">
+            <FaLinkedin size={16} />
+          </a>
         </motion.div>
       </div>
 
