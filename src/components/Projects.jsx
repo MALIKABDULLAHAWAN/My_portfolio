@@ -24,7 +24,7 @@ const projects = [
     desc: "End-to-end full-stack image generation app. Built with React, Node.js, and MySQL. Features user auth, generation history, image gallery, and a scalable frontend-backend architecture wired to OpenAI's image generation API.",
     icon: '🎨',
     live: false,
-    github: 'https://github.com/MALIKABDULLAHAWAN',
+    github: 'https://github.com/MALIKABDULLAHAWAN/dall_e_clone_with_mysql',
     tags: ['React', 'Node.js', 'MySQL', 'OpenAI API', 'Auth']
   },
   {
@@ -32,7 +32,7 @@ const projects = [
     desc: 'CNN-LSTM deep learning model for detecting synthetic Urdu speech. Combines audio feature extraction (MFCCs, spectrograms) with temporal sequence modeling. Achieved 92% classification accuracy.',
     icon: '🎙️',
     live: false,
-    github: 'https://github.com/MALIKABDULLAHAWAN',
+    github: 'https://github.com/MALIKABDULLAHAWAN/Urdu-Audio-DeepFake-Detection',
     tags: ['Python', 'CNN-LSTM', 'PyTorch', 'Audio ML', 'TensorFlow']
   },
   {
@@ -48,7 +48,7 @@ const projects = [
     desc: 'Ultra-low-latency conversational AI assistant powered by Groq\'s LPU inference. Features multi-turn context management, prompt engineering, and streaming responses — demonstrating production-ready LLM integration patterns.',
     icon: '💬',
     live: false,
-    github: 'https://github.com/MALIKABDULLAHAWAN',
+    github: 'https://github.com/MALIKABDULLAHAWAN/Chatbot-using-GroqCloud-API',
     tags: ['Groq API', 'Prompt Engineering', 'LLMs', 'Python', 'RAG']
   },
   {

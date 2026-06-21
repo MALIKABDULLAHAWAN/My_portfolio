@@ -20,13 +20,22 @@ const LANG_COLORS = {
   Shell: '#89e051'
 }
 
+const GOOD_REPOS = [
+  'FYP',
+  'dall_e_clone_with_mysql',
+  'Urdu-Audio-DeepFake-Detection',
+  'ecommerce-hybrid-spark-kafka-pipeline',
+  'Autonomous-Research-Agents-System',
+  'future.clinic'
+]
+
 const MANUAL_REPOS = [
   { name: 'FYP', description: 'Dhyan — Production multimodal AI therapeutic system with face recognition, emotion detection, and LLM conversations.', language: 'JavaScript', html_url: 'https://github.com/MALIKABDULLAHAWAN/FYP', stargazers_count: 0 },
-  { name: 'future.clinic', description: 'AI-powered healthcare web application built with TypeScript and Next.js. Deployed on GitHub Pages.', language: 'TypeScript', html_url: 'https://github.com/MALIKABDULLAHAWAN/future.clinic', stargazers_count: 0 },
-  { name: 'clone_website', description: 'Full-stack web application clone built with TypeScript, featuring modern architecture and CI/CD deployment.', language: 'TypeScript', html_url: 'https://github.com/MALIKABDULLAHAWAN/clone_website', stargazers_count: 0 },
-  { name: 'Next-JS-Workflows', description: 'Next.js application with GitHub Actions CI/CD workflows — demonstrating production-ready deployment pipelines.', language: 'TypeScript', html_url: 'https://github.com/MALIKABDULLAHAWAN/Next-JS-Workflows', stargazers_count: 0 },
-  { name: 'build-angular-app', description: 'Angular application with full build pipeline, serving as a foundation for scalable enterprise UI.', language: 'HTML', html_url: 'https://github.com/MALIKABDULLAHAWAN/build-angular-app', stargazers_count: 0 },
-  { name: 'My_portfolio', description: 'This very portfolio site — built with Vite, Three.js, and deployed via GitHub Actions to GitHub Pages.', language: 'HTML', html_url: 'https://github.com/MALIKABDULLAHAWAN/My_portfolio', stargazers_count: 0 },
+  { name: 'dall_e_clone_with_mysql', description: 'End-to-end full-stack image generation app.', language: 'TypeScript', html_url: 'https://github.com/MALIKABDULLAHAWAN/dall_e_clone_with_mysql', stargazers_count: 0 },
+  { name: 'Urdu-Audio-DeepFake-Detection', description: 'CNN-LSTM deep learning model for detecting synthetic Urdu speech.', language: 'Python', html_url: 'https://github.com/MALIKABDULLAHAWAN/Urdu-Audio-DeepFake-Detection', stargazers_count: 0 },
+  { name: 'ecommerce-hybrid-spark-kafka-pipeline', description: 'Hybrid Spark and Kafka data pipeline for e-commerce analytics.', language: 'Python', html_url: 'https://github.com/MALIKABDULLAHAWAN/ecommerce-hybrid-spark-kafka-pipeline', stargazers_count: 0 },
+  { name: 'Autonomous-Research-Agents-System', description: 'System for autonomous research using multiple AI agents.', language: 'Python', html_url: 'https://github.com/MALIKABDULLAHAWAN/Autonomous-Research-Agents-System', stargazers_count: 0 },
+  { name: 'future.clinic', description: 'AI-powered healthcare web application built with TypeScript and Next.js.', language: 'TypeScript', html_url: 'https://github.com/MALIKABDULLAHAWAN/future.clinic', stargazers_count: 0 },
 ]
 
 export default function GithubRepos() {
@@ -35,11 +44,12 @@ export default function GithubRepos() {
   const inView = useInView(ref, { once: true, margin: '-80px' })
 
   useEffect(() => {
-    fetch('https://api.github.com/users/MALIKABDULLAHAWAN/repos?sort=updated&per_page=6')
+    fetch('https://api.github.com/users/MALIKABDULLAHAWAN/repos?per_page=100')
       .then((r) => r.json())
       .then((data) => {
         if (Array.isArray(data) && data.length) {
-          setRepos(data.slice(0, 6))
+          const filtered = data.filter(repo => GOOD_REPOS.includes(repo.name));
+          setRepos(filtered.slice(0, 6));
         }
       })
       .catch(() => {
